@@ -134,17 +134,36 @@ struct Node *temp,*ptr;
 }
 
 struct Node* delNodeRandom(){
-struct Node *newNode,*temp;
+struct Node *temp,*ptr;
 printf("enter the key that you want to be delete:");
     scanf("%d",&key);
+    temp=ptr=head;
+    while(temp!=NULL){
+    if(temp->data==key){
+        ptr->next=temp->next;
+        delete temp;
+    break;
+    }
+    ptr=temp;
+    temp=temp->next;
+    }
+    if(temp==NULL){
+        printf("Soory!, Element not found");
+    }
+}
+
+void search(){
+struct Node *temp;
     temp=head;
     while(temp!=NULL){
     if(temp->data==key){
-    newNode->next=temp->next;
-    temp->next=newNode;
+    printf("Element found!");
     break;
     }
     temp=temp->next;
+    }
+     if(temp==NULL){
+        printf("Soory!, Element not found");
     }
 }
 
