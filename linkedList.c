@@ -6,9 +6,9 @@ struct Node{
     int data;
     struct Node *next;
 };
-struct Node *head=NULL;
 
 int main(){
+    struct Node *head=NULL;
     int ch,i;
     //while with 1 has been execute until user not 
     while(1){
@@ -55,7 +55,131 @@ int main(){
         // this case terminates the continue executing loop and pass the control outside of loop
         printf("Thank you for visit..!");
         return 0;
+        default:
+        printf("Invalid choice!");
+        break;
     }
     }
     return 0;
 }
+struct Node* insertBegin(){
+struct Node *newNode,*temp;
+    int x;
+newNode = (struct Node*)malloc(sizeof(struct Node));  //To allocate the memory to a node
+    printf("enter the data:");
+    scanf("%d",&x);
+newNode->data=x;
+if(head==NULL){             //Create the first node, if no node is created 
+    head=newNode;
+    newNode->next=NULL;
+}
+else{
+    temp=head;
+    head=newNode;
+    newNode->next=temp;
+}
+}
+
+struct Node* insertEnd(){
+struct Node *newNode,*temp;
+    int x;
+newNode = (struct Node*)malloc(sizeof(struct Node));  //To allocate the memory to a node
+    printf("enter the data:");
+    scanf("%d",&x);
+newNode->data=x;
+temp=head;
+    while(temp->next!=NULL){
+    temp=temp->next;
+    }
+    temp->next=newNode;
+    newNode->next=NULL;
+}
+
+struct Node* insertRandom(){
+struct Node *newNode,*temp;
+    int x,key;
+newNode = (struct Node*)malloc(sizeof(struct Node));  //To allocate the memory to a node
+    printf("enter the data:");
+    scanf("%d",&x);
+newNode->data=x;
+printf("enter the key after which you want to be insert the data:");
+    scanf("%d",&key);
+    temp=head;
+    while(temp!=NULL){
+    if(temp->data==key){
+    newNode->next=temp->next;
+    temp->next=newNode;
+    break;
+    }
+    temp=temp->next;
+    }
+}
+
+struct Node* delNodeBegin(){
+struct Node *temp;
+  temp=head;
+  head=temp->next;
+  delete temp;
+}
+
+struct Node* delNodeEnd(){
+struct Node *temp,*ptr;
+  temp=ptr=head;
+  while(temp->next!=NULL){
+      ptr=temp;
+      temp=temp->next;
+  }
+    ptr->next=NULL;
+  delete temp;
+}
+
+struct Node* delNodeRandom(){
+struct Node *newNode,*temp;
+printf("enter the key that you want to be delete:");
+    scanf("%d",&key);
+    temp=head;
+    while(temp!=NULL){
+    if(temp->data==key){
+    newNode->next=temp->next;
+    temp->next=newNode;
+    break;
+    }
+    temp=temp->next;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
