@@ -1,30 +1,41 @@
 //Linked list in DSA
 #include<stdio.h>
-#define Max 20
+#include<stdlib.h>
+
+struct Node* insertBegin();
+struct Node* insertEnd();
+struct Node* insertRandom();
+void delNodeBegin();
+void delNodeEnd();
+void delNodeRandom();
+void search();
+void displayList();
+
 
 struct Node{
     int data;
     struct Node *next;
 };
+ struct Node *head=NULL;
 
 int main(){
-    struct Node *head=NULL;
+   
     int ch,i;
     //while with 1 has been execute until user not 
     while(1){
-    printf("---------------------------------");
-    printf("       *** MENU DRIVEN ***       ");
-    printf("---------------------------------");
-    printf("insert node at beginning:1");
-    printf("insert node at end:2");
-    printf("insert node at random:3");
-    printf("delete node from begin:4");
-    printf("delete node from end:5");
-    printf("delete node from random:6");
-    printf("search a node:7");
-    printf("display node list:8");
-    printf("---------------------------------");
-    printf("enter your choice:");
+    printf("\n-------------------------------");
+    printf("\n     *** MENU DRIVEN ***       ");
+    printf("\n-------------------------------");
+    printf("\ninsert node at beginning:1");
+    printf("\ninsert node at end:2");
+    printf("\ninsert node at random:3");
+    printf("\ndelete node from begin:4");
+    printf("\ndelete node from end:5");
+    printf("\ndelete node from random:6");
+    printf("\nsearch a node:7");
+    printf("\ndisplay node list:8");
+    printf("\n-------------------------------");
+    printf("\nenter your choice:");
     scanf("%d",&ch);
     switch(ch){
         case 1:
@@ -53,10 +64,10 @@ int main(){
         break;
         case 0:
         // this case terminates the continue executing loop and pass the control outside of loop
-        printf("Thank you for visit..!");
+        printf("\nThank you for visit..!");
         return 0;
         default:
-        printf("Invalid choice!");
+        printf("\nInvalid choice!");
         break;
     }
     }
@@ -66,7 +77,7 @@ struct Node* insertBegin(){
 struct Node *newNode,*temp;
     int x;
 newNode = (struct Node*)malloc(sizeof(struct Node));  //To allocate the memory to a node
-    printf("enter the data:");
+    printf("\nenter the data:");
     scanf("%d",&x);
 newNode->data=x;
 if(head==NULL){             //Create the first node, if no node is created 
@@ -84,7 +95,7 @@ struct Node* insertEnd(){
 struct Node *newNode,*temp;
     int x;
 newNode = (struct Node*)malloc(sizeof(struct Node));  //To allocate the memory to a node
-    printf("enter the data:");
+    printf("\nenter the data:");
     scanf("%d",&x);
 newNode->data=x;
 temp=head;
@@ -99,10 +110,10 @@ struct Node* insertRandom(){
 struct Node *newNode,*temp;
     int x,key;
 newNode = (struct Node*)malloc(sizeof(struct Node));  //To allocate the memory to a node
-    printf("enter the data:");
+    printf("\nenter the data:");
     scanf("%d",&x);
 newNode->data=x;
-printf("enter the key after which you want to be insert the data:");
+printf("\nenter the key after which you want to be insert the data:");
     scanf("%d",&key);
     temp=head;
     while(temp!=NULL){
@@ -115,14 +126,14 @@ printf("enter the key after which you want to be insert the data:");
     }
 }
 
-struct Node* delNodeBegin(){
+void delNodeBegin(){
 struct Node *temp;
   temp=head;
   head=temp->next;
-  delete temp;
+  free(temp);
 }
 
-struct Node* delNodeEnd(){
+void delNodeEnd(){
 struct Node *temp,*ptr;
   temp=ptr=head;
   while(temp->next!=NULL){
@@ -130,75 +141,54 @@ struct Node *temp,*ptr;
       temp=temp->next;
   }
     ptr->next=NULL;
-  delete temp;
+  free(temp);
 }
 
-struct Node* delNodeRandom(){
+void delNodeRandom(){
 struct Node *temp,*ptr;
-printf("enter the key that you want to be delete:");
+int key;
+printf("\nenter the key that you want to be delete:");
     scanf("%d",&key);
     temp=ptr=head;
     while(temp!=NULL){
     if(temp->data==key){
         ptr->next=temp->next;
-        delete temp;
+        free(temp);
     break;
     }
     ptr=temp;
     temp=temp->next;
     }
     if(temp==NULL){
-        printf("Soory!, Element not found");
+        printf("\nSoory!, Element not found");
     }
 }
 
 void search(){
 struct Node *temp;
     temp=head;
+    int key;
+    printf("\nenter the search key:");
+    scanf("%d",&key);
     while(temp!=NULL){
     if(temp->data==key){
-    printf("Element found!");
+    printf("\nElement found!");
     break;
     }
     temp=temp->next;
     }
      if(temp==NULL){
-        printf("Soory!, Element not found");
+        printf("\nSoory!, Element not found");
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void displayList(){
+struct Node* temp;
+    temp=head;
+    while(temp!=NULL){
+      printf("\t %d",temp->data);
+        temp=temp->next;
+    }
+}
 
 
