@@ -1,0 +1,44 @@
+#include<stdio.h>
+#define MAX 10
+struct Process{
+    int id;
+    int burstTime;
+    int remainingTime;
+};
+
+void roundRobin(struct Process processes[],int n,int TQ){
+    int executiontime=waitingTime=completed,turnAroundTime=0,i;
+    while(completed>0){
+        for(i=0;i<n;i++){
+            if(processes[i].remainigTime>0){
+                if(processes[i].remainigTime>TQ)
+                   executionTime+=TQ;
+                   processes[i].remaining-=TQ;
+                else
+                   executionTime+=processes[i].remainigTime;
+                   waitingTime+=executionTime-processes[i].burstTime;
+                   turnAroundTime+=executionTime;
+                   processes[i].remainigTime=0;
+                   completed++;
+            }
+        }
+    }
+}
+
+
+int main(){
+    struct Process processes[MAX];
+    int n,i,TQ;
+    printf("enter the no. of processes:");
+    scanf("%d",&n);
+    printf("\n enter the Time quantum:");
+    scanf("%d",&TQ);
+    printf("\n enter the burst time\n")
+    for(i=0;i<n;i++){
+        printf("\n Process no.%d :",(i+1));
+        scanf("%d",&processes[i].burstTime);
+        processes[i].remainigTime=processes[i].burstTime;
+    }
+    roundRobin(processes,n,TQ);
+    return 0;
+}
