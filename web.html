@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Employee Registration form</title>
+    <style>
+        body {
+            background-color: rgb(14, 37, 44);
+            color: white; 
+        }
+        .nature {
+            background-image:url('https://www.shutterstock.com/image-photo/nature-reserve-zelenci-krajnska-gora-260nw-2732332605.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 20%;
+            width:100%;
+        }
+        .registrationForm {
+            background-color: rgb(105, 106, 107);
+            opacity: 0.5;
+            width: 30%;
+            height: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nature">This is nature or wounder</div>
+    <form class="registrationForm" id="regform">
+        <div>
+            <div>
+                <label>Sign Up</label><br><br>
+            </div>
+            <div>
+                <input type="text" placeholder="Enter your name" id="Name" class="name"><br>
+                <input type="text" placeholder="Email" id="Email" class="email"><br>
+                <input type="password" placeholder="password" id="Password" class="password"><br>
+                <input type="password" placeholder="Confirm password" id="conpass" class="conpass1"><br>
+                <input type="number" placeholder="Phone no." id="Phone"><br> 
+            </div>
+            <div>
+                <button type="submit" id="b1" class="submit">Submit</button>
+                <button type="reset" id="b2" class="cancel">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <p id="erMsg" style="color: red; font-weight: bold;"></p>
+
+<script>
+    const form = document.getElementById("regform");
+    const erMsg = document.getElementById("erMsg");
+
+
+    form.addEventListener("submit", function (event) {
+        const empName = document.getElementById("Name").value.trim();
+        const empEmail = document.getElementById("Email").value.trim();
+        const empPassword = document.getElementById("Password").value;
+        const empConfirmPassword = document.getElementById("conpass").value;
+
+        if (empName === '') {
+            event.preventDefault();
+            erMsg.style.color = "red";
+            erMsg.textContent = "Name cannot be blank!";
+        }
+        else {
+            event.preventDefault(); 
+            erMsg.style.color = "lightgreen";
+            erMsg.textContent = "Thank you for the information";
+        }
+    });
+</script>
+</body>
+</html>
